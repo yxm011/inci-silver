@@ -21,7 +21,8 @@ const Catalog = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    setAddedItems({})
+  }, [category])
 
   const categoryData = {
     uzukler: {
