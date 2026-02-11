@@ -62,12 +62,21 @@ export const CartProvider = ({ children }) => {
     if (cartItems.length === 0) return
 
     const phoneNumber = '994555550502'
+    const baseUrl = window.location.origin
     let message = 'Salam! Aşağıdaki məhsullar haqqında məlumat almaq istəyirəm:\n\n'
     
     cartItems.forEach((item, index) => {
+      const categorySlug = item.category === 'Üzüklər' ? 'uzukler' 
+        : item.category === 'Biləziklər' ? 'bilezikler'
+        : item.category === 'Boyunbağılar' ? 'boyunbagilar'
+        : 'beyler'
+      
+      const productLink = `${baseUrl}/catalog?category=${categorySlug}`
+      
       message += `${index + 1}. ${item.name}\n`
       message += `   Kateqoriya: ${item.category}\n`
-      message += `   Miqdar: ${item.quantity}\n\n`
+      message += `   Miqdar: ${item.quantity}\n`
+      message += `   Link: ${productLink}\n\n`
     })
     
     message += 'Bu məhsulların qiymətləri və stokda olub-olmadığı haqqında məlumat verə bilərsinizmi?'
