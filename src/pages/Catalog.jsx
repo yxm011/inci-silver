@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { ArrowLeft, Filter, ShoppingCart } from 'lucide-react'
+import { ArrowLeft, Filter, ShoppingCart, Grid, List } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 
 const Catalog = () => {
   const [searchParams] = useSearchParams()
   const category = searchParams.get('category') || 'uzukler'
   const [selectedFilter, setSelectedFilter] = useState('all')
+  const [gridView, setGridView] = useState('default') // 'compact', 'default', 'wide'
   const { addToCart } = useCart()
 
   useEffect(() => {
@@ -96,6 +97,17 @@ const Catalog = () => {
       category: currentCategory.title
     })
   }
+
+  const getGridClasses = () => {
+    switch (gridView) {
+      case 'compact':
+        return 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6'
+      case 'wide':
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
+      default:
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+    }
+  }
   const filters = ['all', 'yeni', 'populyar', 'endirim']
   const filterLabels = {
     all: 'Hamısı',
@@ -137,24 +149,62 @@ const Catalog = () => {
             <span className="font-semibold text-gray-900">Filtr:</span>
           </div>
           
-          <div className="flex flex-wrap gap-2">
-            {filters.map((filter) => (
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 bg-white rounded-lg p-1 shadow-sm">
               <button
-                key={filter}
-                onClick={() => setSelectedFilter(filter)}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  selectedFilter === filter
+                onClick={() => setGridView('compact')}
+                className={`p-2 rounded transition ${
+                  gridView === 'compact'
                     ? 'bg-primary text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
+                title="Sıx baxış (2+ sütun)"
               >
-                {filterLabels[filter]}
+                <Grid size={16} className="scale-75" />
               </button>
-            ))}
+              <button
+                onClick={() => setGridView('default')}
+                className={`p-2 rounded transition ${
+                  gridView === 'default'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Standart baxış"
+              >
+                <Grid size={18} />
+              </button>
+              <button
+                onClick={() => setGridView('wide')}
+                className={`p-2 rounded transition ${
+                  gridView === 'wide'
+                    ? 'bg-primary text-white'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Geniş baxış (2 sütun)"
+              >
+                <List size={18} />
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="flex flex-wrap gap-2 mb-8">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setSelectedFilter(filter)}
+              className={`px-4 py-2 rounded-lg font-medium transition ${
+                selectedFilter === filter
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {filterLabels[filter]}
+            </button>
+          ))}
+        </div>
+
+        <div className={`grid ${getGridClasses()} gap-6`}>
           {currentCategory.items.map((item) => (
             <div
               key={item.id}
