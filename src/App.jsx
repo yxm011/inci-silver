@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import { CartProvider } from './context/CartContext'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
 import GiftPackaging from './pages/GiftPackaging'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import Cart from './components/Cart'
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -131,22 +133,25 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        
-        <main className="pt-20">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/gift-packaging" element={<GiftPackaging />} />
-          </Routes>
-        </main>
+    <CartProvider>
+      <Router>
+        <div className="min-h-screen bg-white">
+          <Navigation />
+          <Cart />
+          
+          <main className="pt-20">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/gift-packaging" element={<GiftPackaging />} />
+            </Routes>
+          </main>
 
-        <Footer scrollToSection={scrollToSection} />
-        <WhatsAppButton />
-      </div>
-    </Router>
+          <Footer scrollToSection={scrollToSection} />
+          <WhatsAppButton />
+        </div>
+      </Router>
+    </CartProvider>
   )
 }
 

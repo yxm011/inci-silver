@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { ArrowLeft, Filter } from 'lucide-react'
+import { ArrowLeft, Filter, ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const Catalog = () => {
   const [searchParams] = useSearchParams()
   const category = searchParams.get('category') || 'uzukler'
   const [selectedFilter, setSelectedFilter] = useState('all')
+  const { addToCart } = useCart()
+  const [addedItems, setAddedItems] = useState({})
+
+  const handleAddToCart = (item) => {
+    addToCart({ ...item, category: currentCategory.title })
+    setAddedItems(prev => ({ ...prev, [item.id]: true }))
+    setTimeout(() => {
+      setAddedItems(prev => ({ ...prev, [item.id]: false }))
+    }, 2000)
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -168,8 +179,16 @@ const Catalog = () => {
                   {item.description}
                 </p>
                 
-                <button className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition">
-                  Ətraflı
+                <button 
+                  onClick={() => handleAddToCart(item)}
+                  className={`w-full py-2 rounded-lg font-semibold transition flex items-center justify-center space-x-2 ${
+                    addedItems[item.id]
+                      ? 'bg-green-500 text-white'
+                      : 'bg-primary text-white hover:bg-primary-dark'
+                  }`}
+                >
+                  <ShoppingCart size={18} />
+                  <span>{addedItems[item.id] ? 'Əlavə olundu!' : 'Səbətə at'}</span>
                 </button>
               </div>
             </div>
