@@ -17,11 +17,11 @@ const Cart = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-24 right-4 z-40 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:scale-110"
+        className="fixed top-24 right-4 z-40 bg-gradient-to-br from-primary to-primary-dark text-white p-4 rounded-full shadow-premium-lg hover:shadow-premium-xl transition-all duration-300 hover:scale-110 border-2 border-white/20"
       >
         <ShoppingCart size={24} />
         {cartCount > 0 && (
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+          <span className="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-red-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-pulse">
             {cartCount}
           </span>
         )}
@@ -31,8 +31,9 @@ const Cart = () => {
         <div className="fixed inset-0 z-50 overflow-hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)}></div>
           
-          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl flex flex-col">
-            <div className="bg-primary text-white p-6 flex items-center justify-between">
+          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-premium-xl flex flex-col">
+            <div className="bg-gradient-to-r from-primary to-primary-dark text-white p-6 flex items-center justify-between relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/10 to-transparent"></div>
               <div className="flex items-center space-x-3">
                 <ShoppingCart size={28} />
                 <div>
@@ -42,7 +43,7 @@ const Cart = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/10 rounded-lg transition"
+                className="p-2 hover:bg-white/10 rounded-lg transition relative z-10"
               >
                 <X size={24} />
               </button>
@@ -60,9 +61,9 @@ const Cart = () => {
                   {cartItems.map((item) => (
                     <div
                       key={item.id}
-                      className="bg-gray-50 rounded-lg p-4 flex items-start space-x-4"
+                      className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 flex items-start space-x-4 border border-gray-100 shadow-sm hover:shadow-premium transition-all duration-300"
                     >
-                      <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center text-3xl flex-shrink-0">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/5 to-accent-gold/5 rounded-lg flex items-center justify-center text-3xl flex-shrink-0 shadow-sm">
                         {item.image}
                       </div>
                       
@@ -102,10 +103,10 @@ const Cart = () => {
             </div>
 
             {cartItems.length > 0 && (
-              <div className="border-t p-6 space-y-3 bg-gray-50">
+              <div className="border-t p-6 space-y-3 bg-gradient-to-br from-gray-50 to-white">
                 <button
                   onClick={handleSendToWhatsApp}
-                  className="w-full bg-green-500 text-white py-4 rounded-lg font-semibold hover:bg-green-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold hover:shadow-premium-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-premium hover:scale-105"
                 >
                   <Send size={20} />
                   <span>WhatsApp ilə Soruş</span>
@@ -113,7 +114,7 @@ const Cart = () => {
                 
                 <button
                   onClick={clearCart}
-                  className="w-full bg-white text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-100 transition border border-gray-300"
+                  className="w-full bg-white text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 border border-gray-300 hover:shadow-premium"
                 >
                   Səbəti Təmizlə
                 </button>

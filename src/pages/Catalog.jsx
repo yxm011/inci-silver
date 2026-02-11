@@ -117,8 +117,11 @@ const Catalog = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-primary text-white py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="bg-gradient-to-br from-primary via-primary-dark to-primary text-white py-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-64 h-64 bg-accent-gold rounded-full blur-3xl animate-float"></div>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link 
             to="/"
@@ -128,8 +131,8 @@ const Catalog = () => {
             <span>Geri</span>
           </Link>
           
-          <div className="flex items-center space-x-4">
-            <div className="text-6xl">{currentCategory.emoji}</div>
+          <div className="flex items-center space-x-4 relative z-10">
+            <div className="text-6xl animate-float">{currentCategory.emoji}</div>
             <div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">
                 {currentCategory.title}
@@ -150,7 +153,7 @@ const Catalog = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 bg-white rounded-lg p-1 shadow-sm">
+            <div className="flex items-center space-x-2 bg-white rounded-lg p-1 shadow-premium border border-gray-200">
               <button
                 onClick={() => setGridView('compact')}
                 className={`p-2 rounded transition ${
@@ -197,13 +200,14 @@ const Catalog = () => {
           {currentCategory.items.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+              className="bg-white rounded-xl overflow-hidden shadow-premium hover:shadow-premium-lg transition-all duration-500 transform hover:-translate-y-3 group border border-gray-100"
             >
-              <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative overflow-hidden">
-                <div className="text-8xl group-hover:scale-110 transition-transform duration-300">
+              <div className="aspect-square bg-gradient-to-br from-primary/5 via-accent-gold/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="text-8xl group-hover:scale-110 transition-transform duration-500 relative z-10">
                   {item.image}
                 </div>
-                <div className="absolute top-3 right-3 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-accent-gold to-accent-silver text-white text-xs font-bold px-3 py-1 rounded-full shadow-gold">
                   Yeni
                 </div>
               </div>
@@ -217,12 +221,12 @@ const Catalog = () => {
                 </p>
                 
                 <div className="flex space-x-2">
-                  <button className="flex-1 bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition">
+                  <button className="flex-1 bg-gradient-to-r from-primary to-primary-dark text-white py-2 rounded-lg font-semibold hover:shadow-premium transition-all duration-300 hover:scale-105">
                     Ətraflı
                   </button>
                   <button 
                     onClick={() => handleAddToCart(item)}
-                    className="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition flex items-center justify-center space-x-1"
+                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 rounded-lg font-semibold hover:shadow-premium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1"
                   >
                     <ShoppingCart size={16} />
                     <span>Səbətə</span>

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Heart, Star, Gift } from 'lucide-react'
 
 const GiftGuide = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const giftCategories = [
     {
       title: 'Ad Günü Hədiyyələri',

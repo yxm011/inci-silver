@@ -38,8 +38,8 @@ const Products = () => {
     <section id="mehsullar" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-            <span className="text-primary text-sm font-medium">Əsil və Eksklyuziv</span>
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 via-accent-gold/10 to-primary/10 px-6 py-2.5 rounded-full mb-4 border border-primary/20 shadow-premium">
+            <span className="text-primary text-sm font-semibold tracking-wide">Əsil və Eksklyuziv</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
             Məhsullarımız
@@ -53,12 +53,13 @@ const Products = () => {
           {categories.map((category, index) => (
             <div 
               key={index}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100"
             >
-              <div className="relative h-64 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <div className="text-8xl">{category.emoji}</div>
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <span className="text-sm font-semibold text-primary">Yeni</span>
+              <div className="relative h-64 bg-gradient-to-br from-primary/5 via-accent-gold/5 to-primary/10 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="text-8xl transform group-hover:scale-110 transition-transform duration-500 relative z-10">{category.emoji}</div>
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-accent-gold to-accent-silver text-white px-4 py-2 rounded-full shadow-gold">
+                  <span className="text-sm font-bold">Yeni</span>
                 </div>
               </div>
               
@@ -79,30 +80,31 @@ const Products = () => {
                 
                 <Link 
                   to={`/catalog?category=${category.slug}`}
-                  className="group/btn inline-flex items-center space-x-2 text-primary font-semibold hover:text-primary-dark transition"
+                  className="group/btn inline-flex items-center space-x-2 text-primary font-semibold hover:text-primary-dark transition-all duration-300 hover:gap-3"
                 >
                   <span>Ətraflı bax</span>
-                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform duration-300" />
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+        <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 md:p-12 shadow-premium-lg border border-gray-100">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-9xl mb-4">💎</div>
-                  <p className="text-xl font-serif text-gray-800">Hədiyyə Bələdçisi</p>
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-accent-gold/10 to-primary/5 flex items-center justify-center relative overflow-hidden group/gift shadow-premium">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-gold/20 to-transparent opacity-0 group-hover/gift:opacity-100 transition-opacity duration-500"></div>
+                <div className="text-center relative z-10">
+                  <div className="text-9xl mb-4 animate-float">💎</div>
+                  <p className="text-xl font-serif text-gray-800 font-semibold">Hədiyyə Bələdçisi</p>
                 </div>
               </div>
             </div>
             
             <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full">
-                <span className="text-primary text-sm font-medium">Əsil və Eksklyuziv</span>
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent-gold/10 px-5 py-2.5 rounded-full border border-primary/20 shadow-premium">
+                <span className="text-primary text-sm font-semibold tracking-wide">Əsil və Eksklyuziv</span>
               </div>
               
               <h3 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
@@ -148,10 +150,10 @@ const Products = () => {
               
               <Link 
                 to="/gift-guide"
-                className="group inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="group inline-flex items-center space-x-2 bg-gradient-to-r from-primary to-primary-dark text-white px-6 py-3 rounded-xl font-semibold hover:shadow-premium-lg transition-all duration-300 shadow-premium hover:scale-105"
               >
                 <span>İndi Baxın</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
             </div>
           </div>
