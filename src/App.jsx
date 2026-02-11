@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { CartProvider } from './context/CartContext'
 import Home from './pages/Home'
@@ -12,6 +12,7 @@ import Cart from './components/Cart'
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   const isHome = location.pathname === '/'
 
   const scrollToSection = (id) => {
@@ -22,13 +23,19 @@ function Navigation() {
         setIsMenuOpen(false)
       }
     } else {
-      window.location.href = `/#${id}`
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
     }
   }
 
   const navigateToCatalog = (category) => {
     setIsMenuOpen(false)
-    window.location.href = `/catalog?category=${category}`
+    navigate(`/catalog?category=${category}`)
   }
 
   return (
