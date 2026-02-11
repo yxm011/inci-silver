@@ -22,7 +22,7 @@ const Hero = () => {
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight">
               <span className="inline-block hover:scale-105 transition-transform duration-300">Zərif</span>{' '}
-              <span className="inline-block bg-gradient-to-r from-white via-accent-gold to-white bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%]">Zərgərlik</span>
+              <span className="inline-block bg-gradient-to-r from-white via-accent-gold to-white bg-clip-text text-transparent">Zərgərlik</span>
             </h1>
             
             <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-lg">
