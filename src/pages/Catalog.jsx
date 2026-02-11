@@ -7,7 +7,7 @@ const Catalog = () => {
   const [searchParams] = useSearchParams()
   const category = searchParams.get('category') || 'uzukler'
   const [selectedFilter, setSelectedFilter] = useState('all')
-  const [gridView, setGridView] = useState('default') // 'compact', 'default', 'wide'
+  const [gridView, setGridView] = useState('wide') // 'compact', 'wide'
   const { addToCart } = useCart()
 
   useEffect(() => {
@@ -101,11 +101,11 @@ const Catalog = () => {
   const getGridClasses = () => {
     switch (gridView) {
       case 'compact':
-        return 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6'
+        return 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'
       case 'wide':
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2'
       default:
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2'
     }
   }
   const filters = ['all', 'yeni', 'populyar', 'endirim']
@@ -158,18 +158,7 @@ const Catalog = () => {
                     ? 'bg-primary text-white'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
-                title="Sıx baxış (2+ sütun)"
-              >
-                <Grid size={16} className="scale-75" />
-              </button>
-              <button
-                onClick={() => setGridView('default')}
-                className={`p-2 rounded transition ${
-                  gridView === 'default'
-                    ? 'bg-primary text-white'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-                title="Standart baxış"
+                title="Sıx baxış"
               >
                 <Grid size={18} />
               </button>
