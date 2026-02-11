@@ -146,13 +146,10 @@ const Products = () => {
                 </div>
               </div>
               
-              <Link 
-                to="/gift-packaging"
-                className="group inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
+              <button className="group inline-flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl">
                 <span>İndi Baxın</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
