@@ -111,7 +111,7 @@ const Footer = ({ scrollToSection }) => {
           </div>
 
           <div className="text-center text-gray-400 text-sm">
-            <p>&copy; 2024 İnci Silver. Bütün hüquqlar qorunur.</p>
+            <p>&copy; 2026 İnci Silver. Bütün hüquqlar qorunur.</p>
           </div>
         </div>
       </div>
