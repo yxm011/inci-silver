@@ -185,42 +185,43 @@ const Catalog = () => {
         </div>
 
         <div className={viewMode === 'grid' 
-          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          : "space-y-6"
+          ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
+          : "space-y-4"
         }>
           {currentCategory.items.map((item) => (
             viewMode === 'grid' ? (
               <div
                 key={item.id}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
               >
                 <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative overflow-hidden">
-                  <div className="text-8xl group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl sm:text-6xl lg:text-8xl group-hover:scale-110 transition-transform duration-300">
                     {item.image}
                   </div>
-                  <div className="absolute top-3 right-3 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  <div className="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full">
                     Yeni
                   </div>
                 </div>
                 
-                <div className="p-5">
-                  <h3 className="text-lg font-serif font-bold text-gray-900 mb-2">
+                <div className="p-3 sm:p-4 lg:p-5">
+                  <h3 className="text-sm sm:text-base lg:text-lg font-serif font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2">
                     {item.name}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 lg:mb-4 line-clamp-2">
                     {item.description}
                   </p>
                   
                   <button 
                     onClick={() => handleAddToCart(item)}
-                    className={`w-full py-2 rounded-lg font-semibold transition flex items-center justify-center space-x-2 ${
+                    className={`w-full py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center space-x-1 sm:space-x-2 ${
                       addedItems[item.id]
                         ? 'bg-green-500 text-white'
                         : 'bg-primary text-white hover:bg-primary-dark'
                     }`}
                   >
-                    <ShoppingCart size={18} />
-                    <span>{addedItems[item.id] ? 'Əlavə olundu!' : 'Səbətə at'}</span>
+                    <ShoppingCart size={16} className="sm:w-[18px] sm:h-[18px]" />
+                    <span className="hidden sm:inline">{addedItems[item.id] ? 'Əlavə olundu!' : 'Səbətə at'}</span>
+                    <span className="sm:hidden">{addedItems[item.id] ? 'Əlavə' : 'Səbət'}</span>
                   </button>
                 </div>
               </div>
