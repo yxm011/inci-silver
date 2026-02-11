@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
+import GiftGuide from './pages/GiftGuide'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import Cart from './components/Cart'
@@ -11,6 +12,7 @@ import { CartProvider } from './context/CartContext'
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   const isHome = location.pathname === '/'
 
   const scrollToSection = (id) => {
@@ -23,6 +25,11 @@ function Navigation() {
     } else {
       window.location.href = `/#${id}`
     }
+  }
+
+  const navigateToCategory = (category) => {
+    setIsMenuOpen(false)
+    navigate(`/catalog?category=${category}`)
   }
 
   return (
@@ -41,10 +48,10 @@ function Navigation() {
 
           <div className="hidden md:flex space-x-8">
             <button onClick={() => scrollToSection('ana-sehife')} className="text-gray-700 hover:text-primary transition">Ana Səhifə</button>
-            <Link to="/catalog?category=uzukler" className="text-gray-700 hover:text-primary transition">Üzüklər</Link>
-            <Link to="/catalog?category=bilezikler" className="text-gray-700 hover:text-primary transition">Biləziklər</Link>
-            <Link to="/catalog?category=boyunbagilar" className="text-gray-700 hover:text-primary transition">Boyunbağılar</Link>
-            <Link to="/catalog?category=beyler" className="text-gray-700 hover:text-primary transition">Bəylər üçün</Link>
+            <button onClick={() => navigateToCategory('uzukler')} className="text-gray-700 hover:text-primary transition">Üzüklər</button>
+            <button onClick={() => navigateToCategory('bilezikler')} className="text-gray-700 hover:text-primary transition">Biləziklər</button>
+            <button onClick={() => navigateToCategory('boyunbagilar')} className="text-gray-700 hover:text-primary transition">Boyunbağılar</button>
+            <button onClick={() => navigateToCategory('beyler')} className="text-gray-700 hover:text-primary transition">Bəylər üçün</button>
             <button onClick={() => scrollToSection('haqqimizda')} className="text-gray-700 hover:text-primary transition">Haqqımızda</button>
             <button onClick={() => scrollToSection('elaqe')} className="text-gray-700 hover:text-primary transition">Əlaqə</button>
           </div>
@@ -62,10 +69,10 @@ function Navigation() {
         <div className="md:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-3">
             <button onClick={() => scrollToSection('ana-sehife')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Ana Səhifə</button>
-            <Link to="/catalog?category=uzukler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Üzüklər</Link>
-            <Link to="/catalog?category=bilezikler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Biləziklər</Link>
-            <Link to="/catalog?category=boyunbagilar" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Boyunbağılar</Link>
-            <Link to="/catalog?category=beyler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Bəylər üçün</Link>
+            <button onClick={() => navigateToCategory('uzukler')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Üzüklər</button>
+            <button onClick={() => navigateToCategory('bilezikler')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Biləziklər</button>
+            <button onClick={() => navigateToCategory('boyunbagilar')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Boyunbağılar</button>
+            <button onClick={() => navigateToCategory('beyler')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Bəylər üçün</button>
             <button onClick={() => scrollToSection('haqqimizda')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Haqqımızda</button>
             <button onClick={() => scrollToSection('elaqe')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Əlaqə</button>
           </div>
@@ -93,6 +100,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/catalog" element={<Catalog />} />
+              <Route path="/gift-guide" element={<GiftGuide />} />
             </Routes>
           </main>
 
