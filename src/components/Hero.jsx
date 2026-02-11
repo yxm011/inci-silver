@@ -37,7 +37,7 @@ const Hero = () => {
           <div className="relative">
             <div className="relative rounded-full overflow-hidden shadow-2xl border-8 border-white/20 backdrop-blur-sm">
               <img 
-                src="/hero-image.jpg" 
+                src="/Pictures/hero-image.jpg" 
                 alt="Orijinal Gümüşlər" 
                 className="w-full h-full object-cover"
               />
