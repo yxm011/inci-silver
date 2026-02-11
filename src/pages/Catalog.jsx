@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { ArrowLeft, Filter } from 'lucide-react'
+import { ArrowLeft, Filter, ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const Catalog = () => {
   const [searchParams] = useSearchParams()
   const category = searchParams.get('category') || 'uzukler'
   const [selectedFilter, setSelectedFilter] = useState('all')
+  const { addToCart } = useCart()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -87,6 +89,13 @@ const Catalog = () => {
   }
 
   const currentCategory = categoryData[category] || categoryData.uzukler
+  
+  const handleAddToCart = (item) => {
+    addToCart({
+      ...item,
+      category: currentCategory.title
+    })
+  }
   const filters = ['all', 'yeni', 'populyar', 'endirim']
   const filterLabels = {
     all: 'Hamısı',
@@ -168,9 +177,18 @@ const Catalog = () => {
                   {item.description}
                 </p>
                 
-                <button className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition">
-                  Ətraflı
-                </button>
+                <div className="flex space-x-2">
+                  <button className="flex-1 bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition">
+                    Ətraflı
+                  </button>
+                  <button 
+                    onClick={() => handleAddToCart(item)}
+                    className="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition flex items-center justify-center space-x-1"
+                  >
+                    <ShoppingCart size={16} />
+                    <span>Səbətə</span>
+                  </button>
+                </div>
               </div>
             </div>
           ))}

@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Catalog from './pages/Catalog'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import Cart from './components/Cart'
+import { CartProvider } from './context/CartContext'
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,7 +41,10 @@ function Navigation() {
 
           <div className="hidden md:flex space-x-8">
             <button onClick={() => scrollToSection('ana-sehife')} className="text-gray-700 hover:text-primary transition">Ana Səhifə</button>
-            <button onClick={() => scrollToSection('mehsullar')} className="text-gray-700 hover:text-primary transition">Məhsullar</button>
+            <Link to="/catalog?category=uzukler" className="text-gray-700 hover:text-primary transition">Üzüklər</Link>
+            <Link to="/catalog?category=bilezikler" className="text-gray-700 hover:text-primary transition">Biləziklər</Link>
+            <Link to="/catalog?category=boyunbagilar" className="text-gray-700 hover:text-primary transition">Boyunbağılar</Link>
+            <Link to="/catalog?category=beyler" className="text-gray-700 hover:text-primary transition">Bəylər üçün</Link>
             <button onClick={() => scrollToSection('haqqimizda')} className="text-gray-700 hover:text-primary transition">Haqqımızda</button>
             <button onClick={() => scrollToSection('elaqe')} className="text-gray-700 hover:text-primary transition">Əlaqə</button>
           </div>
@@ -57,7 +62,10 @@ function Navigation() {
         <div className="md:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-3">
             <button onClick={() => scrollToSection('ana-sehife')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Ana Səhifə</button>
-            <button onClick={() => scrollToSection('mehsullar')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Məhsullar</button>
+            <Link to="/catalog?category=uzukler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Üzüklər</Link>
+            <Link to="/catalog?category=bilezikler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Biləziklər</Link>
+            <Link to="/catalog?category=boyunbagilar" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Boyunbağılar</Link>
+            <Link to="/catalog?category=beyler" className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Bəylər üçün</Link>
             <button onClick={() => scrollToSection('haqqimizda')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Haqqımızda</button>
             <button onClick={() => scrollToSection('elaqe')} className="block w-full text-left py-2 text-gray-700 hover:text-primary transition">Əlaqə</button>
           </div>
@@ -77,19 +85,22 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        
-        <main className="pt-20">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-          </Routes>
-        </main>
+      <CartProvider>
+        <div className="min-h-screen bg-white">
+          <Navigation />
+          
+          <main className="pt-20">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+            </Routes>
+          </main>
 
-        <Footer scrollToSection={scrollToSection} />
-        <WhatsAppButton />
-      </div>
+          <Footer scrollToSection={scrollToSection} />
+          <WhatsAppButton />
+          <Cart />
+        </div>
+      </CartProvider>
     </Router>
   )
 }
