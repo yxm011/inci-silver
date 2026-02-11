@@ -36,12 +36,11 @@ const Hero = () => {
           
           <div className="relative">
             <div className="relative rounded-full overflow-hidden shadow-2xl border-8 border-white/20 backdrop-blur-sm">
-              <div className="aspect-square bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center">
-                <div className="text-center text-white p-8">
-                  <div className="text-8xl mb-4">💍</div>
-                  <p className="text-2xl font-serif">Orijinal Gümüşlər</p>
-                </div>
-              </div>
+              <img 
+                src="/hero-image.jpg" 
+                alt="Orijinal Gümüşlər" 
+                className="w-full h-full object-cover"
+              />
             </div>
             
             <div className="absolute -bottom-6 -left-6 bg-white rounded-full p-4 shadow-xl">
